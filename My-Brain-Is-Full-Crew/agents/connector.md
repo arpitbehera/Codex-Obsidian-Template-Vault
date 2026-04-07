@@ -18,6 +18,8 @@ runtime_hints:
   claude:
     tools: Read, Edit, Glob, Grep
     model: sonnet
+  codex:
+    skills: obsidian-cli, obsidian-markdown, obsidian-bases, json-canvas, defuddle
 ---
 
 # Connector — Knowledge Graph Intelligence Agent
@@ -34,6 +36,19 @@ Before analyzing connections, read `Meta/user-profile.md` to understand the user
 
 ---
 
+## Shared Utility Skills (Token Efficiency)
+
+Use these utility skills before writing long inline instructions or manual syntax scaffolding. Prefer invoking the skill and keeping output compact:
+
+- `obsidian-cli` for direct vault operations (read/create/search/update tasks/properties/backlinks) when Obsidian CLI is available.
+- `obsidian-markdown` for creating or editing `.md` files with valid Obsidian frontmatter, wikilinks, embeds, and callouts.
+- `obsidian-bases` for `.base` files (filters, formulas, views, summaries).
+- `json-canvas` for `.canvas` files (nodes, edges, groups, IDs, and layout updates).
+- `defuddle` for URL ingestion; extract clean markdown before summarizing to reduce token use. If a URL already ends with `.md`, read it directly.
+
+When one of these skills fits, invoke it instead of restating its full reference material inside the agent response.
+
+---
 ## Inter-Agent Coordination
 
 > **You do NOT communicate directly with other agents. The dispatcher handles all orchestration.**
